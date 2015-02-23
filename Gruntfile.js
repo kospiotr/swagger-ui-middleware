@@ -15,7 +15,15 @@ module.exports = function (grunt) {
                 boss: true,
                 eqnull: true,
                 node: true,
-                globals: {}
+                globals: {
+                    /* MOCHA */
+                    "describe": false,
+                    "it": false,
+                    "before": false,
+                    "beforeEach": false,
+                    "after": false,
+                    "afterEach": false
+                }
             },
             gruntfile: {
                 src: 'Gruntfile.js'
@@ -24,9 +32,6 @@ module.exports = function (grunt) {
                 src: ['lib/**/*.js', 'test/**/*.js', 'index.js']
             }
         },
-        nodeunit: {
-            files: ['test/**/*_test.js']
-        },
         watch: {
             gruntfile: {
                 files: '<%= jshint.gruntfile.src %>',
@@ -34,16 +39,23 @@ module.exports = function (grunt) {
             },
             lib_test: {
                 files: '<%= jshint.lib_test.src %>',
-                tasks: ['jshint:lib_test', 'nodeunit']
+                tasks: ['jshint:lib_test', 'simplemocha']
+            }
+        },
+        simplemocha: {
+            all: {
+                src: ['test/**/*Test.js']
             }
         }
+
     });
 
-    grunt.loadNpmTasks('grunt-contrib-nodeunit');
+    grunt.loadNpmTasks('grunt-simple-mocha');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('default', ['jshint', 'nodeunit']);
-    grunt.registerTask('testing', ['jshint', 'nodeunit', 'watch']);
+    grunt.registerTask('default', ['test']);
+    grunt.registerTask('test', ['jshint', 'simplemocha']);
+    grunt.registerTask('testing', ['test', 'watch']);
 
 };

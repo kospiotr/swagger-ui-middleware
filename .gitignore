@@ -26,3 +26,5 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+/nbproject/
+/examples/petstore/node_modules/

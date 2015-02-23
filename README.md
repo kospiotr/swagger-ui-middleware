@@ -36,14 +36,17 @@ swaggerUiMiddleware.hostUI(app, {path: '/test', overrides: __dirname+'/swagger-u
 
 ##path
 * default: /api-doc
+
 Context resource that hosts swagger-ui
 
 ##overrides
 * default: undefined
+
 Directory which contains overriding resources lke index.html which can be adjusted
 
 ##source
 * default: __dirname + '/../swagger-ui/dist'
+
 Source folder which indicates swagger-ui resources.
 
 #Example

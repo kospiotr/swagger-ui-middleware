@@ -86,4 +86,7 @@ grunt testing
 ```
 
 to run testing app:
+
+```bash
 node test/fixtures/server
+```
